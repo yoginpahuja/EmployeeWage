@@ -1,6 +1,6 @@
 import java.util.*;
 public class EmpWageProb {
-    public static final int isFullTime=1,isPartTime=2,dailyHrs=8,dailyWage=20,partTimeHrs=4;
+    public static final int isFullTime=1,isPartTime=2,dailyHrs=8,hourlyWage=20,partTimeHrs=4,workingDays=20;
 
     public static int empCheck()
     {
@@ -9,37 +9,25 @@ public class EmpWageProb {
     public static void main(String[] args)
     {
         System.out.println("Welcome to Employee Wage Computation");
-        int empHrs=0;
-        int totalDailyWage=0;
-        // if(empCheck()==isFullTime)
-        //     {
-        //         System.out.println("Employee is Present");
-        //         empHrs+=dailyHrs;
-        //     }
-        // else if(empCheck()==isPartTime)
-        //     {
-        //            System.out.println("Employee is Present");
-        //            empHrs+=partTimeHrs;
-        //     }
-        // else
-        //     System.out.println("Employee is Absent");
-       
-
-        switch (empCheck()) {
-            case isFullTime:
+        int empHrs=0,totalMonthlyWage=0,i=1;
+        while(i++<=workingDays)
+        {
+            switch (empCheck()) {
+             case isFullTime:
                 System.out.println("Employee is Present (Full time)");
                 empHrs+=dailyHrs;
                 break;
-            case isPartTime:
+             case isPartTime:
                 System.out.println("Employee is Present (Part time)");
                 empHrs+=partTimeHrs;
                 break;
-            default:
+             default:
                 System.out.println("Employee is Absent");
                 break;
+            }
         }
 
-        totalDailyWage=dailyWage*empHrs;
-        System.out.println("Daily wage computed is " + totalDailyWage);
+        totalMonthlyWage=hourlyWage*empHrs;
+        System.out.println("Monthly wage computed is " + totalMonthlyWage);
     }
 }
