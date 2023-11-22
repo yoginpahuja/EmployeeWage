@@ -1,16 +1,22 @@
 import java.util.*;
 public class EmpWageProb {
-    public static final int isFullTime=1,isPartTime=2,dailyHrs=8,hourlyWage=20,partTimeHrs=4,workingDays=20;
-
+    //Constants used in the implementation
+    
+    public static final int isFullTime=1,isPartTime=2,dailyHrs=8,hourlyWage=20,partTimeHrs=4,workingDays=20,MaxWorkHours=100;
+    
+    //Employee Status Check Method
+    
     public static int empCheck()
     {
         return (int)Math.floor(Math.random()*10)%3;
     }
     public static void main(String[] args)
     {
+        //Welcome 
         System.out.println("Welcome to Employee Wage Computation");
         int empHrs=0,totalMonthlyWage=0,i=1;
-        while(i++<=workingDays)
+        //Use Cases
+        while(i++<=workingDays && empHrs<=MaxWorkHours)
         {
             switch (empCheck()) {
              case isFullTime:
@@ -26,7 +32,7 @@ public class EmpWageProb {
                 break;
             }
         }
-
+        //Output as Total Monthly Wage
         totalMonthlyWage=hourlyWage*empHrs;
         System.out.println("Monthly wage computed is " + totalMonthlyWage);
     }
