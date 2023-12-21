@@ -1,41 +1,39 @@
-import java.util.*;
-public class EmpWageProb {
-    //Constants used in the implementation
-    
-    public static final int isFullTime=1,isPartTime=2,dailyHrs=8,hourlyWage=20,partTimeHrs=4,workingDays=20,MaxWorkHours=100;
-    
-    //Employee Status Check Method
-    
-    public static int empCheck()
-    {
-        return (int)Math.floor(Math.random()*10)%3;
+
+class EmployeeWage {
+    public static final int IS_FULL_TIME = 1;
+    public static final int IS_PART_TIME = 2;
+
+    public static int employeeCheck() {
+        return (int) (Math.ceil(Math.random() * 10) % 3);
     }
-    public static int calculateWage()
-    {
-         int empHrs=0,totalMonthlyWage=0,i=1;
-        //Use Cases
-        while(i++<=workingDays && empHrs<=MaxWorkHours)
-        {
-            switch (empCheck()) {
-             case isFullTime:
-                System.out.println("Employee is Present (Full time)");
-                empHrs+=dailyHrs;
+
+    public static void computeWage(int maxHoursInMonth, int monthlyWorkingDays, int empWagePerHour){
+        int empHours=0, totalDays = 0;
+
+        while(empHours<maxHoursInMonth && totalDays<monthlyWorkingDays){
+            int employeePresent = employeeCheck();
+            switch (employeePresent) {
+                case IS_FULL_TIME:
+                System.out.println("Employee is Full Time");
+                empHours += 8;
                 break;
-             case isPartTime:
-                System.out.println("Employee is Present (Part time)");
-                empHrs+=partTimeHrs;
+                case IS_PART_TIME:
+                System.out.println("Employee is Part Time");
+                empHours += 4;
                 break;
-             default:
-                System.out.println("Employee is Absent");
+                default:
+                System.out.println("Employee is absent");
+                empHours += 0;
                 break;
             }
         }
-        //Output as Total Monthly Wage
-        totalMonthlyWage=hourlyWage*empHrs;
-        return totalMonthlyWage;
+
+        int dailyWage = empHours * empWagePerHour;
+        System.out.println("Daily Wage: " + dailyWage);
     }
-    public static void main(String[] args)
-    {  
-        System.out.println("Monthly wage computed is " + calculateWage());
+
+    public static void main(String[] args) {
+        System.out.println("Welcome to Employee Wage Computation Program");
+        computeWage(150,20,10);
     }
 }
