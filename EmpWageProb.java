@@ -10,11 +10,9 @@ public class EmpWageProb {
     {
         return (int)Math.floor(Math.random()*10)%3;
     }
-    public static void main(String[] args)
+    public static int calculateWage()
     {
-        //Welcome 
-        System.out.println("Welcome to Employee Wage Computation");
-        int empHrs=0,totalMonthlyWage=0,i=1;
+         int empHrs=0,totalMonthlyWage=0,i=1;
         //Use Cases
         while(i++<=workingDays && empHrs<=MaxWorkHours)
         {
@@ -34,6 +32,10 @@ public class EmpWageProb {
         }
         //Output as Total Monthly Wage
         totalMonthlyWage=hourlyWage*empHrs;
-        System.out.println("Monthly wage computed is " + totalMonthlyWage);
+        return totalMonthlyWage;
+    }
+    public static void main(String[] args)
+    {  
+        System.out.println("Monthly wage computed is " + calculateWage());
     }
 }
